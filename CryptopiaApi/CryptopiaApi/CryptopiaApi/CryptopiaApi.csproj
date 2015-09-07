@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{30296406-237D-4B4B-8B5A-BDD18F0C2F53}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CryptopiaApi</RootNamespace>
+    <AssemblyName>CryptopiaApi</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CryptopiaPrivateAPI.cs" />
+    <Compile Include="CryptopiaPublicAPI.cs" />
+    <Compile Include="DataObjects\Private\BalanceRequest.cs" />
+    <Compile Include="DataObjects\Private\BalanceResponse.cs" />
+    <Compile Include="DataObjects\Private\CancelTradeRequest.cs" />
+    <Compile Include="DataObjects\Private\CancelTradeResponse.cs" />
+    <Compile Include="DataObjects\Private\DepositAddressRequest.cs" />
+    <Compile Include="DataObjects\Private\DepositAddressResponse.cs" />
+    <Compile Include="DataObjects\Private\OpenOrdersRequest.cs" />
+    <Compile Include="DataObjects\Private\OpenOrdersResponse.cs" />
+    <Compile Include="DataObjects\Private\SubmitTipRequest.cs" />
+    <Compile Include="DataObjects\Private\SubmitTipResponse.cs" />
+    <Compile Include="DataObjects\Private\SubmitTradeRequest.cs" />
+    <Compile Include="DataObjects\Private\SubmitTradeResponse.cs" />
+    <Compile Include="DataObjects\Private\TradeHistoryRequest.cs" />
+    <Compile Include="DataObjects\Private\TradeHistoryResponse.cs" />
+    <Compile Include="DataObjects\Private\TransactionRequest.cs" />
+    <Compile Include="DataObjects\Private\TransactionResponse.cs" />
+    <Compile Include="DataObjects\Public\CurrenciesResponse.cs" />
+    <Compile Include="DataObjects\Public\MarketHistoryRequest.cs" />
+    <Compile Include="DataObjects\Public\MarketHistoryResponse.cs" />
+    <Compile Include="DataObjects\Public\MarketOrdersRequest.cs" />
+    <Compile Include="DataObjects\Public\MarketOrdersResponse.cs" />
+    <Compile Include="DataObjects\Public\MarketRequest.cs" />
+    <Compile Include="DataObjects\Public\MarketResponse.cs" />
+    <Compile Include="DataObjects\Public\MarketsRequest.cs" />
+    <Compile Include="DataObjects\Public\MarketsResponse.cs" />
+    <Compile Include="DataObjects\Public\TradePairsResponse.cs" />
+    <Compile Include="Implementation\AuthDelegatingHandler.cs" />
+    <Compile Include="Implementation\ICryptopiaApiPrivate.cs" />
+    <Compile Include="Implementation\ICryptopiaApiPublic.cs" />
+    <Compile Include="Implementation\IRequest.cs" />
+    <Compile Include="Implementation\IResponse.cs" />
+    <Compile Include="Implementation\PrivateApiCall.cs" />
+    <Compile Include="Implementation\PublicApiCall.cs" />
+    <Compile Include="Models\BalanceResult.cs" />
+    <Compile Include="Models\CurrencyResult.cs" />
+    <Compile Include="Models\MarketHistoryResult.cs" />
+    <Compile Include="Models\MarketOrderResult.cs" />
+    <Compile Include="Models\MarketOrdersResult.cs" />
+    <Compile Include="Models\MarketResult.cs" />
+    <Compile Include="Models\OpenOrderResult.cs" />
+    <Compile Include="Models\TradeHistoryResult.cs" />
+    <Compile Include="Models\TradePairResult.cs" />
+    <Compile Include="Models\TransactionResult.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

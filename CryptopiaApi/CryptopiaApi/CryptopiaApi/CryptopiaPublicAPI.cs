@@ -1,10 +1,11 @@
 ﻿using Cryptopia.API.DataObjects;
 using Cryptopia.API.Implementation;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,7 +53,7 @@ namespace Cryptopia.API
 		{
 			return await GetResult<MarketOrdersResponse, MarketOrdersRequest>(PublicApiCall.GetMarketOrders, request);
 		}
-	
+
 		#endregion
 
 		#region public Members
@@ -66,7 +67,16 @@ namespace Cryptopia.API
 			{
 				return new T() { Success = false, Error = "No Response." };
 			}
-			return JObject.Parse(response).ToObject<T>();
+			return GetObject<T>(response);
+		}
+
+		private T GetObject<T>(string jsonData)
+		{
+			using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonData)))
+			{
+				var serializer = new DataContractJsonSerializer(typeof(T));
+				return (T)(object)serializer.ReadObject(stream);
+			}
 		}
 
 		public void Dispose()

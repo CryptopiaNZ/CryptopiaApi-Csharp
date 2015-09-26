@@ -17,5 +17,6 @@ namespace Cryptopia.API.Implementation
 		Task<TransactionResponse> GetTransactions(TransactionRequest request);
 		Task<SubmitTipResponse> SubmitTip(SubmitTipRequest request);
 		Task<SubmitTradeResponse> SubmitTrade(SubmitTradeRequest request);
+		Task<SubmitWithdrawResponse> SubmitWithdraw(SubmitWithdrawRequest request);
 	}
 }

@@ -15,6 +15,7 @@ namespace Cryptopia.API.Implementation
 		SubmitTrade,
 		GetTransactions,
 		SubmitTip,
-		GetDepositAddress
+		GetDepositAddress,
+		SubmitWithdraw
 	}
 }

@@ -62,6 +62,11 @@ namespace Cryptopia.API
 			return await GetResult<SubmitTipResponse, SubmitTipRequest>(PrivateApiCall.SubmitTip, request);
 		}
 
+		public async Task<SubmitWithdrawResponse> SubmitWithdraw(SubmitWithdrawRequest request)
+		{
+			return await GetResult<SubmitWithdrawResponse, SubmitWithdrawRequest>(PrivateApiCall.SubmitWithdraw, request);
+		}
+
 		#endregion
 
 		#region public Members

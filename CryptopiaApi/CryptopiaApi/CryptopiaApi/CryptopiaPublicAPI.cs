@@ -26,43 +26,46 @@ namespace Cryptopia.API
 
 		public async Task<CurrenciesResponse> GetCurrencies()
 		{
-			return await GetResult<CurrenciesResponse, IRequest>(PublicApiCall.GetCurrencies, null);
+			return await GetResult<CurrenciesResponse>(PublicApiCall.GetCurrencies, null);
 		}
 
 		public async Task<TradePairsResponse> GetTradePairs()
 		{
-			return await GetResult<TradePairsResponse, IRequest>(PublicApiCall.GetTradePairs, null);
+			return await GetResult<TradePairsResponse>(PublicApiCall.GetTradePairs, null);
 		}
 
 		public async Task<MarketsResponse> GetMarkets(MarketsRequest request)
 		{
-			return await GetResult<MarketsResponse, MarketsRequest>(PublicApiCall.GetMarkets, request);
+			var query = request.Hours.HasValue ? $"/{request.Hours}" : null;
+			return await GetResult<MarketsResponse>(PublicApiCall.GetMarkets, query);
 		}
 
 		public async Task<MarketResponse> GetMarket(MarketRequest request)
 		{
-			return await GetResult<MarketResponse, MarketRequest>(PublicApiCall.GetMarket, request);
+			var query = request.Hours.HasValue ? $"/{request.TradePairId}/{request.Hours}" : $"/{request.TradePairId}";
+			return await GetResult<MarketResponse>(PublicApiCall.GetMarket, query);
 		}
 
 		public async Task<MarketHistoryResponse> GetMarketHistory(MarketHistoryRequest request)
 		{
-			return await GetResult<MarketHistoryResponse, MarketHistoryRequest>(PublicApiCall.GetMarketHistory, request);
+			var query = $"/{request.TradePairId}";
+			return await GetResult<MarketHistoryResponse>(PublicApiCall.GetMarketHistory, query);
 		}
 
 		public async Task<MarketOrdersResponse> GetMarketOrders(MarketOrdersRequest request)
 		{
-			return await GetResult<MarketOrdersResponse, MarketOrdersRequest>(PublicApiCall.GetMarketOrders, request);
+			var query = request.OrderCount.HasValue ? $"/{request.TradePairId}/{request.OrderCount}" : $"/{request.TradePairId}";
+			return await GetResult<MarketOrdersResponse>(PublicApiCall.GetMarketOrders, query);
 		}
 
 		#endregion
 
 		#region public Members
 
-		public async Task<T> GetResult<T, U>(PublicApiCall call, U requestData)
+		public async Task<T> GetResult<T>(PublicApiCall call, string requestData)
 			where T : IResponse, new()
-			where U : IRequest
 		{
-			var response = await _client.GetStringAsync(string.Format("{0}/Api/{1}", _apiBaseAddress, call));
+			var response = await _client.GetStringAsync(string.Format("{0}/Api/{1}{2}", _apiBaseAddress, call, requestData));
 			if (string.IsNullOrEmpty(response))
 			{
 				return new T() { Success = false, Error = "No Response." };

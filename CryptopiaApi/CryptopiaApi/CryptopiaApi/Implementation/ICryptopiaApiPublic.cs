@@ -6,9 +6,7 @@ namespace Cryptopia.API.Implementation
 {
 	public interface ICryptopiaApiPublic : IDisposable
 	{
-		Task<T> GetResult<T, U>(PublicApiCall call, U requestData)
-			where T : IResponse, new()
-			where U : IRequest;
+		Task<T> GetResult<T>(PublicApiCall call, string requestData) where T : IResponse, new();
 		Task<CurrenciesResponse> GetCurrencies();
 		Task<MarketResponse> GetMarket(MarketRequest request);
 		Task<MarketHistoryResponse> GetMarketHistory(MarketHistoryRequest request);

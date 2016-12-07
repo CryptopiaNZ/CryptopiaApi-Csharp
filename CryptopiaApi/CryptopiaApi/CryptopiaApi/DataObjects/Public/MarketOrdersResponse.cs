@@ -11,6 +11,6 @@ namespace Cryptopia.API.DataObjects
 	{
 		public bool Success { get; set; }
 		public string Error { get; set; }
-		public List<MarketOrdersResult> Data { get; set; }
+		public MarketOrdersResult Data { get; set; }
 	}
 }

@@ -15,7 +15,7 @@ namespace Cryptopia.API.DataObjects
 		/// </summary>
 		public CancelTradeRequest()
 		{
-			CancelType = CancelTradeType.All;
+			Type = CancelTradeType.All;
 		}
 
 		/// <summary>
@@ -25,7 +25,7 @@ namespace Cryptopia.API.DataObjects
 		public CancelTradeRequest(int orderId)
 		{
 			OrderId = orderId;
-			CancelType = CancelTradeType.Trade;
+			Type = CancelTradeType.Trade;
 		}
 
 		/// <summary>
@@ -35,9 +35,9 @@ namespace Cryptopia.API.DataObjects
 		public CancelTradeRequest(int tradePairId, CancelTradeType type = CancelTradeType.TradePair)
 		{
 			TradePairId = tradePairId;
-			CancelType = CancelTradeType.TradePair;
+			Type = CancelTradeType.TradePair;
 		}
-
+	
 		/// <summary>
 		/// Gets or sets the trade identifier.
 		/// </summary>
@@ -51,7 +51,7 @@ namespace Cryptopia.API.DataObjects
 		/// <summary>
 		/// Gets or sets the type of cancel.
 		/// </summary>
-		public CancelTradeType CancelType { get; set; }
+		public CancelTradeType Type { get; set; }
 	}
 
 	/// <summary>

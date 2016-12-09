@@ -14,5 +14,7 @@ namespace Cryptopia.API.Models
 		public string Symbol { get; set; }
 		public string BaseCurrency { get; set; }
 		public string BaseSymbol { get; set; }
+		public string Status { get; set; }
+		public decimal MinimumBaseTrade { get; set; }
 	}
 }
